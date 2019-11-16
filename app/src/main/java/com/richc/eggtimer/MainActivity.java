@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     boolean timerActive = false;
     static int timerMax=600;        //sec
     static int initTimerValue=30;   //sec
-    int timerValue;                 //sec
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                int min=1;
-
-                if (i < min) {
-                    timerSeekBar.setProgress(timerValue);
-                    timerValue = min;
-
-                } else {
-                    timerValue = i;
-                }
-
-                updateTimer(timerValue);
+                updateTimer(i);
             }
 
             @Override
@@ -76,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             timerButton.setText("Stop");
             timerActive = true;
 
-            countDownTimer = new CountDownTimer(timerValue*1000, 1000){
+            countDownTimer = new CountDownTimer(timerSeekBar.getProgress()*1000, 1000){
                 public void onTick(long millisUntilFinished) {
 
                     updateTimer((int)millisUntilFinished/1000);
