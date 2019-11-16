@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             timerButton.setText("Stop");
             timerActive = true;
 
-            countDownTimer = new CountDownTimer(timerSeekBar.getProgress()*1000, 1000){
+            countDownTimer = new CountDownTimer(timerSeekBar.getProgress()*1000+300, 1000){
                 public void onTick(long millisUntilFinished) {
 
                     updateTimer((int)millisUntilFinished/1000);
