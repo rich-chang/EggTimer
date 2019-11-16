@@ -96,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
         timerSeekBar.setProgress(initTimerValue);
         timerSeekBar.setEnabled(true);
 
-        //timerTextView.setText(String.format("%02d", timerValue/60)+":"+String.format("%02d", timerValue%60));
-
         timerButton.setText("Start");
         timerActive = false;
     }
