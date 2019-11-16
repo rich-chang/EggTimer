@@ -2,6 +2,7 @@ package com.richc.eggtimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
                 public void onFinish() {
                     resetTimer();
+
+                    MediaPlayer mplayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
+                    mplayer.start();
                 }
             }.start();
         }
