@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         timerSeekBar.setMax(timerMax);
         timerSeekBar.setProgress(initTimerValue);
-        timerTextView.setText(String.format("%02d", timerValue/60)+":"+String.format("%02d", timerValue%60));
+        timerTextView.setText(String.format("%02d", initTimerValue/60)+":"+String.format("%02d", initTimerValue%60));
 
         timerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -49,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     timerValue = i;
                 }
 
-                String mm = String.format("%02d", timerValue/60);
-                String ss = String.format("%02d", timerValue%60);
-                timerTextView.setText(mm+":"+ss);
+                updateTimer(timerValue);
             }
 
             @Override
@@ -81,12 +79,7 @@ public class MainActivity extends AppCompatActivity {
             countDownTimer = new CountDownTimer(timerValue*1000, 1000){
                 public void onTick(long millisUntilFinished) {
 
-                    int secUntilFinished = (int)millisUntilFinished/1000;
-                    int mm = secUntilFinished/60;
-                    int ss = secUntilFinished%60;
-
-                    timerTextView.setText(String.format("%02d", mm)+":"+String.format("%02d", ss));
-                    //Log.i("Second left", String.valueOf(millisUntilFinished));
+                    updateTimer((int)millisUntilFinished/1000);
                 }
 
                 public void onFinish() {
@@ -103,9 +96,16 @@ public class MainActivity extends AppCompatActivity {
         timerSeekBar.setProgress(initTimerValue);
         timerSeekBar.setEnabled(true);
 
-        timerTextView.setText(String.format("%02d", timerValue/60)+":"+String.format("%02d", timerValue%60));
+        //timerTextView.setText(String.format("%02d", timerValue/60)+":"+String.format("%02d", timerValue%60));
 
         timerButton.setText("Start");
         timerActive = false;
+    }
+
+    public void updateTimer (int secUntilFinish) {
+        int mm = secUntilFinish/60;
+        int ss = secUntilFinish%60;
+
+        timerTextView.setText(String.format("%02d", mm)+":"+String.format("%02d", ss));
     }
 }
